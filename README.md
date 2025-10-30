@@ -1,21 +1,6 @@
-# 📚 Biblioteca Digital API - Checkpoint FIAP
+# 📚 Acervo Digital API – Checkpoint FIAP
 
-Sistema completo de gerenciamento de biblioteca digital desenvolvido em .NET 8 com Clean Architecture, integrações externas e armazenamento em nuvem.
-
-## 🎯 Status do Projeto
-
-**✅ TODOS OS REQUISITOS IMPLEMENTADOS (R1-R6) + EXTRAS**
-
-- **34 endpoints REST** funcionais e documentados
-- **Oracle Database** (FIAP) com EF Core
-- **Azure Blob Storage SDK** para capas de livros
-- **OpenLibrary API** para enriquecimento de dados
-- **Sistema de arquivos** (upload/download)
-- **Middleware global** de exceções
-- **Logs estruturados** com ILogger
-- **Validações** com Data Annotations
-- **GitHub Actions** CI/CD configurado
-- **Secrets** seguros (sem credenciais no código)
+API REST para gestão de acervos (livros, autores e empréstimos) construída em .NET 8 com arquitetura limpa, integrações HTTP e armazenamento em nuvem. Este projeto é uma variação com identidade própria do template de biblioteca digital, mantendo os requisitos funcionais do checkpoint.
 
 ## 🚀 Tecnologias Utilizadas
 
@@ -46,9 +31,9 @@ Sistema completo de gerenciamento de biblioteca digital desenvolvido em .NET 8 c
 - Entity Framework Core configurado com Oracle
 - Context: `BibliotecaDigitalContext`
 - Connection string: `oracle.fiap.com.br:1521/ORCL`
-- Usuário: RM550695
-- Repositories com padrão Repository Pattern
-- Tabelas: TB_AUTORES, TB_LIVROS, TB_EMPRESTIMOS, TB_PERFIS_AUTOR
+- Usuário exemplo: `RM550695`
+- Repository Pattern aplicado
+- Tabelas: AUTORES, PERFILAUTORES, LIVROS, EMPRESTIMOS
 
 ### ✅ R3 - Manipulação de Arquivos
 **Implementado com System.IO:**
@@ -62,10 +47,10 @@ Sistema completo de gerenciamento de biblioteca digital desenvolvido em .NET 8 c
 #### **Azure Blob Storage (SDK Oficial)**
 - **Package**: Azure.Storage.Blobs v12.22.2
 - **Service**: `AzureBlobStorageService`
-- **Container**: `capas-livros`
+- **Container**: `media-capinhas`
 - **Endpoints**:
-  - `POST /api/capas/upload` - Upload de capas
-  - `GET /api/capas/download/{nome}` - Download de capas
+  - `POST /api/v1/capas/upload` - Upload de mídias de capa
+  - `GET /api/capas/download/{nome}` - Download de capa
   - `GET /api/capas/listar` - Listar todas as capas
   - `DELETE /api/capas/{nome}` - Deletar capa
 - **Configuração**: Lazy initialization (não falha se Azurite não estiver rodando)
@@ -88,17 +73,17 @@ Sistema completo de gerenciamento de biblioteca digital desenvolvido em .NET 8 c
 - Captura e formatação de erros
 
 ### ✅ R6 - Qualidade e Organização
-- **Clean Architecture**: 3 camadas (Domain/Data/API)
-- **DTOs**: Separação completa de entidades e DTOs
-- **Dependency Injection**: Todos os serviços registrados corretamente
-- **Logging**: Sistema abrangente de logs
-- **Validações**: ModelState e validações de negócio
-- **Documentação**: README, AZURE_BLOB_STORAGE.md, R4_INTEGRACOES_COMPLETO.md
+- **Clean Architecture**: Domain / Data / API
+- **DTOs**: Separação de contrato e domínio
+- **Dependency Injection**: Serviços e repositórios registrados
+- **Logging**: ILogger com mensagens padronizadas
+- **Validações**: Data Annotations + regras de negócio
+- **Documentação**: README reescrito e Swagger
 
 ## 🏗️ Arquitetura
 
 ```
-BibliotecaDigitalApp/
+AcervoDigital/
 ├── src/
 │   ├── BibliotecaDigital.Domain/        # Entidades e Interfaces
 │   │   ├── Models/                      # Autor, Livro, Emprestimo, PerfilAutor
@@ -109,7 +94,7 @@ BibliotecaDigitalApp/
 │   │   └── Repositories/                # Implementações Repository Pattern
 │   │
 │   └── BibliotecaDigital.API/           # Controllers e Services
-│       ├── Controllers/                 # 5 controllers REST
+│       ├── Controllers/                 # Controllers REST
 │       ├── DTOs/                        # Data Transfer Objects
 │       ├── Services/                    # Azure, OpenLibrary, Upload
 │       ├── Middleware/                  # ExceptionMiddleware
@@ -119,18 +104,18 @@ BibliotecaDigitalApp/
 └── docs/                                # Documentação técnica
 ```
 
-## 📡 Endpoints da API (34 total)
+## 📡 Endpoints da API (visão geral)
 
-### 👥 Autores (8 endpoints)
+### 👥 Autores
 - CRUD completo + busca por nome + perfil detalhado
 
-### 📚 Livros (11 endpoints)  
+### 📚 Livros  
 - CRUD + busca + estoque + **integração OpenLibrary**
 
-### 📋 Empréstimos (10 endpoints)
+### 📋 Empréstimos
 - CRUD + devolução + cálculo multa + controle por usuário
 
-### 🖼️ Capas (5 endpoints - Azure Blob Storage)
+### 🖼️ Capas (Azure Blob Storage)
 - Upload, download, listagem e exclusão de capas
 
 ---
@@ -147,9 +132,9 @@ BibliotecaDigitalApp/
 - ✅ Secrets injetados como variáveis de ambiente
 
 ### Arquivos de Configuração
-- `appsettings.json` - **Protegido pelo .gitignore** (não commitado)
-- `appsettings.Example.json` - Template seguro para repositório
-- `.github/workflows/dotnet.yml` - Pipeline CI/CD
+- `appsettings.json` - sensível (mantido fora do versionamento)
+- `appsettings.Example.json` - template seguro
+- `.github/workflows/dotnet.yml` - pipeline CI/CD
 
 ## 🚀 Como Executar
 
@@ -160,12 +145,12 @@ BibliotecaDigitalApp/
 
 ## 📊 Endpoints Principais
 
-- `GET /api/livros` - Lista livros
-- `POST /api/livros` - Cadastra livro
-- `GET /api/autores` - Lista autores
-- `POST /api/emprestimos` - Registra empréstimo
-- `POST /api/arquivos/upload` - Upload de arquivo
-- `GET /api/exportacao/csv` - Exporta dados em CSV
+- `GET /api/v1/livros` - Lista livros
+- `POST /api/v1/livros` - Cadastra livro
+- `GET /api/v1/autores` - Lista autores
+- `POST /api/v1/emprestimos` - Registra empréstimo
+- `GET /api/v1/capas/listar` - Lista de mídias de capa
+- `GET /api/v1/livros/exportar-csv` - Exporta catálogo em CSV
 
 ## 🔒 Segurança
 
@@ -238,7 +223,7 @@ BibliotecaDigitalApp/
 
 1. **Clone/abra o projeto**
 ```bash
-cd "BibliotecaDigitalApp"
+cd "AcervoDigital"
 ```
 
 2. **Restaurar dependências**
@@ -258,51 +243,51 @@ dotnet run
 ```
 
 5. **Acessar a documentação da API**
-   - URL: `http://localhost:5219`
-   - Swagger UI estará disponível na raiz da aplicação
+   - URL: `http://localhost:5000`
+   - Swagger UI disponível na raiz
 
 ## 📡 Endpoints da API
 
 ### 👥 **Autores** (`/api/autores`)
-- `GET /api/autores` - Lista todos os autores
-- `GET /api/autores/{id}` - Busca autor por ID
-- `GET /api/autores/{id}/perfil` - Busca autor com perfil detalhado
-- `GET /api/autores/{id}/livros` - Busca autor com seus livros
-- `GET /api/autores/buscar/{nome}` - Busca autores por nome
-- `POST /api/autores` - Cria novo autor
-- `PUT /api/autores/{id}` - Atualiza autor existente
-- `DELETE /api/autores/{id}` - Remove autor
+- `GET /api/v1/autores` - Lista todos os autores
+- `GET /api/v1/autores/{id}` - Busca autor por ID
+- `GET /api/v1/autores/{id}/perfil` - Busca autor com perfil detalhado
+- `GET /api/v1/autores/{id}/livros` - Busca autor com seus livros
+- `GET /api/v1/autores/buscar/{nome}` - Busca autores por nome
+- `POST /api/v1/autores` - Cria novo autor
+- `PUT /api/v1/autores/{id}` - Atualiza autor existente
+- `DELETE /api/v1/autores/{id}` - Remove autor
 
 ### 📚 **Livros** (`/api/livros`)
-- `GET /api/livros` - Lista todos os livros
-- `GET /api/livros/{id}` - Busca livro por ID
-- `GET /api/livros/buscar/{titulo}` - Busca livros por título
-- `GET /api/livros/autor/{autorId}` - Lista livros por autor
-- `GET /api/livros/disponiveis` - Lista livros disponíveis
-- `GET /api/livros/buscar-openlibrary?titulo={titulo}` - **[R4 HTTP]** Buscar livros na OpenLibrary API
-- `GET /api/livros/enriquecer/{id}` - **[R4 HTTP]** Enriquecer livro com dados da OpenLibrary
-- `POST /api/livros` - Cria novo livro
-- `PUT /api/livros/{id}` - Atualiza livro existente
-- `DELETE /api/livros/{id}` - Remove livro (soft delete)
-- `PATCH /api/livros/{id}/estoque` - Atualiza estoque do livro
+- `GET /api/v1/livros` - Lista todos os livros
+- `GET /api/v1/livros/{id}` - Busca livro por ID
+- `GET /api/v1/livros/buscar/{titulo}` - Busca livros por título
+- `GET /api/v1/livros/autor/{autorId}` - Lista livros por autor
+- `GET /api/v1/livros/disponiveis` - Lista livros disponíveis
+- `GET /api/v1/livros/buscar-openlibrary?titulo={titulo}` - **[R4 HTTP]** Buscar livros na OpenLibrary API
+- `GET /api/v1/livros/enriquecer/{id}` - **[R4 HTTP]** Enriquecer livro com dados da OpenLibrary
+- `POST /api/v1/livros` - Cria novo livro
+- `PUT /api/v1/livros/{id}` - Atualiza livro existente
+- `DELETE /api/v1/livros/{id}` - Remove livro (soft delete)
+- `PATCH /api/v1/livros/{id}/estoque` - Atualiza estoque do livro
 
 ### 📋 **Empréstimos** (`/api/emprestimos`)
-- `GET /api/emprestimos` - Lista todos os empréstimos
-- `GET /api/emprestimos/{id}` - Busca empréstimo por ID
-- `GET /api/emprestimos/usuario/{cpf}` - Lista empréstimos ativos por usuário
-- `GET /api/emprestimos/vencidos` - Lista empréstimos vencidos
-- `GET /api/emprestimos/livro/{livroId}` - Lista empréstimos por livro
-- `GET /api/emprestimos/{id}/multa` - Calcula multa por atraso
-- `POST /api/emprestimos` - Cria novo empréstimo
-- `PUT /api/emprestimos/{id}` - Atualiza empréstimo existente
-- `PATCH /api/emprestimos/{id}/devolver` - Processa devolução de livro
-- `DELETE /api/emprestimos/{id}` - Remove empréstimo
+- `GET /api/v1/emprestimos` - Lista todos os empréstimos
+- `GET /api/v1/emprestimos/{id}` - Busca empréstimo por ID
+- `GET /api/v1/emprestimos/usuario/{cpf}` - Lista empréstimos ativos por usuário
+- `GET /api/v1/emprestimos/vencidos` - Lista empréstimos vencidos
+- `GET /api/v1/emprestimos/livro/{livroId}` - Lista empréstimos por livro
+- `GET /api/v1/emprestimos/{id}/multa` - Calcula multa por atraso
+- `POST /api/v1/emprestimos` - Cria novo empréstimo
+- `PUT /api/v1/emprestimos/{id}` - Atualiza empréstimo existente
+- `PATCH /api/v1/emprestimos/{id}/devolver` - Processa devolução de livro
+- `DELETE /api/v1/emprestimos/{id}` - Remove empréstimo
 
 ### �️ **Capas (Azure Blob Storage)** (`/api/capas`) - **[R4 SDK]**
-- `POST /api/capas/upload` - Upload de capa para Azure Blob Storage
-- `GET /api/capas/download/{nome}` - Download de capa do Azure
-- `GET /api/capas/listar` - Lista todas as capas armazenadas
-- `DELETE /api/capas/{nome}` - Deleta capa do Azure Blob Storage
+- `POST /api/v1/capas/upload` - Upload de capa para Azure Blob Storage
+- `GET /api/v1/capas/download/{nome}` - Download de capa do Azure
+- `GET /api/v1/capas/listar` - Lista todas as capas armazenadas
+- `DELETE /api/v1/capas/{nome}` - Deleta capa do Azure Blob Storage
 
 ## ⚙️ Configuração e Instalação
 
@@ -369,9 +354,9 @@ Abra o navegador em: **http://localhost:5219/swagger**
 ### Testar Azure Blob Storage (SDK)
 
 1. Certifique-se de que o Azurite está rodando
-2. No Swagger, vá para `POST /api/capas/upload`
+2. No Swagger, vá para `POST /api/v1/capas/upload`
 3. Faça upload de uma imagem (JPG, PNG)
-4. A URL retornada será: `http://127.0.0.1:10000/devstoreaccount1/capas-livros/{nome-arquivo}`
+4. A URL retornada será: `http://127.0.0.1:10000/devstoreaccount1/media-capinhas/{nome-arquivo}`
 
 ### Testar OpenLibrary API (HTTP)
 
@@ -393,10 +378,10 @@ Abra o navegador em: **http://localhost:5219/swagger**
 - **TB_LIVROS**: Catálogo de livros (N:1 com Autor)
 - **TB_EMPRESTIMOS**: Histórico de empréstimos (N:1 com Livro)
 
-### Connection String
+### Connection String (exemplo)
 
 ```json
-"Oracle": "User Id=RM550695;Password=***;Data Source=oracle.fiap.com.br:1521/ORCL"\
+"Oracle": "User Id=RM550695;Password=***;Data Source=oracle.fiap.com.br:1521/ORCL"
 ```
 
 ## 🔄 Funcionalidades Principais
@@ -492,41 +477,41 @@ Abra o navegador em: **http://localhost:5219/swagger**
 - **Interface Segregation** - Contratos específicos
 - **Dependency Inversion** - Dependência de abstrações
 
-## � Exemplos de Uso
+## 📘 Exemplos de Uso
 
 ### Criar um Autor com Perfil
 ```json
-POST /api/autores
+POST /api/v1/autores
 {
-  "nome": "José de Alencar",
-  "email": "jose.alencar@literatura.com.br",
-  "dataNascimento": "1829-05-01",
-  "nacionalidade": "Brasileira",
+  "nome": "Fernando Pessoa",
+  "email": "fernando.pessoa@poesia.com.br",
+  "dataNascimento": "1888-06-13",
+  "nacionalidade": "Portuguesa",
   "perfil": {
-    "biografia": "José Martiniano de Alencar foi um jornalista, político, advogado, orador, crítico, cronista, polemista, romancista e dramaturgo brasileiro.",
-    "website": "https://www.josealencar.com.br",
-    "redesSociais": "Facebook: @JoseAlencarOficial",
-    "premios": "Patrono da cadeira 23 da Academia Brasileira de Letras"
+    "biografia": "Fernando Pessoa foi um poeta, filósofo, dramaturgo, ensaísta, tradutor, publicitário, astrólogo, inventor, empresário, correspondente comercial, crítico literário e comentarista político português.",
+    "website": "https://www.fernandopessoa.pt",
+    "redesSociais": "Instagram: @fernandopessoa_oficial",
+    "premios": "Prêmio Nacional de Poesia, Prêmio Camões"
   }
 }
 ```
 
 ### Criar um Empréstimo
 ```json
-POST /api/emprestimos
+POST /api/v1/emprestimos
 {
   "livroId": 1,
-  "nomeUsuario": "Maria Silva",
+  "nomeUsuario": "Isabela Santos",
   "cpfUsuario": "123.456.789-00",
-  "emailUsuario": "maria.silva@email.com",
+  "emailUsuario": "isabela.santos@email.com",
   "telefoneUsuario": "(11) 99999-9999",
-  "observacoes": "Primeiro empréstimo da usuária"
+  "observacoes": "Primeiro empréstimo da usuária - estudante de literatura"
 }
 ```
 
 ### Buscar Livros na OpenLibrary (R4 - HTTP)
 ```http
-GET /api/livros/buscar-openlibrary?titulo=Dom%20Casmurro&limit=5
+GET /api/v1/livros/buscar-openlibrary?titulo=A%20Rosa%20do%20Povo&limit=5
 ```
 
 **Response:**
@@ -535,11 +520,11 @@ GET /api/livros/buscar-openlibrary?titulo=Dom%20Casmurro&limit=5
   "success": true,
   "data": [
     {
-      "titulo": "Dom Casmurro",
-      "autor": "Machado de Assis",
-      "anoPublicacao": 1899,
+      "titulo": "A Rosa do Povo",
+      "autor": "Carlos Drummond de Andrade",
+      "anoPublicacao": 1945,
       "isbn": "978-8535908870",
-      "numeroPaginas": 256,
+      "numeroPaginas": 180,
       "fonte": "OpenLibrary"
     }
   ]
@@ -548,7 +533,7 @@ GET /api/livros/buscar-openlibrary?titulo=Dom%20Casmurro&limit=5
 
 ### Upload de Capa para Azure (R4 - SDK)
 ```http
-POST /api/capas/upload
+POST /api/v1/capas/upload
 Content-Type: multipart/form-data
 
 arquivo: [arquivo.jpg]
@@ -558,7 +543,7 @@ arquivo: [arquivo.jpg]
 ```json
 {
   "success": true,
-  "url": "http://127.0.0.1:10000/devstoreaccount1/capas-livros/capa_1234567890.jpg",
+  "url": "http://127.0.0.1:10000/devstoreaccount1/media-capinhas/capa_1234567890.jpg",
   "message": "Capa enviada com sucesso para o Azure Blob Storage"
 }
 ```
@@ -575,7 +560,7 @@ arquivo: [arquivo.jpg]
 {
   "AzureStorage": {
     "ConnectionString": "DefaultEndpointsProtocol=https;AccountName=suaconta;AccountKey=suachave;EndpointSuffix=core.windows.net",
-    "ContainerName": "capas-livros"
+    "ContainerName": "media-capinhas"
   }
 }
 ```
@@ -652,6 +637,6 @@ export AzureStorage__ConnectionString="DefaultEndpointsProtocol=https;AccountNam
 3. **Inicie o Azurite**: `start azurite` (na pasta azurite/)
 4. **Configure a senha** do Oracle em `appsettings.json`
 5. **Execute**: `dotnet run` (na pasta src/BibliotecaDigital.API)
-6. **Acesse**: http://localhost:5219/swagger
+6. **Acesse**: http://localhost:5000/swagger
 
 ---

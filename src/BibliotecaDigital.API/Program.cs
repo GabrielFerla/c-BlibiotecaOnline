@@ -15,9 +15,9 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<BibliotecaDigitalContext>(options =>
 {
-    var databaseProvider = builder.Configuration.GetValue<string>("DatabaseProvider");
+    var dbProvider = builder.Configuration.GetValue<string>("DbProvider");
     
-    if (databaseProvider == "Oracle")
+    if (dbProvider == "Oracle")
     {
         var connectionString = builder.Configuration.GetConnectionString("OracleConnection");
         options.UseOracle(connectionString);
@@ -30,7 +30,7 @@ builder.Services.AddDbContext<BibliotecaDigitalContext>(options =>
     }
     else
     {
-        options.UseInMemoryDatabase("BibliotecaDigitalDB");
+        options.UseInMemoryDatabase("AcervoDigitalDB");
         
         if (builder.Environment.IsDevelopment())
         {
@@ -65,9 +65,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new() { 
-        Title = "Biblioteca Digital API", 
+        Title = "Acervo Digital API", 
         Version = "v1",
-        Description = "API para gerenciamento de biblioteca digital - Checkpoint FIAP"
+        Description = "API REST para gestão de acervos digitais - Checkpoint FIAP"
     });
 });
 
@@ -80,7 +80,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Biblioteca Digital API v1");
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Acervo Digital API v1");
         c.RoutePrefix = string.Empty;
     });
 }
@@ -94,8 +94,8 @@ app.UseAuthorization();
 app.MapControllers();
 
 var logger = app.Services.GetRequiredService<ILogger<Program>>();
-logger.LogInformation("🚀 Biblioteca Digital API iniciada com sucesso!");
-logger.LogInformation("📚 Swagger disponível em: http://localhost:5219/swagger");
-logger.LogInformation("🗄️  Banco de dados: {DatabaseProvider}", app.Configuration.GetValue<string>("DatabaseProvider"));
+logger.LogInformation("🚀 Acervo Digital API iniciada com sucesso!");
+logger.LogInformation("📚 Swagger disponível em: http://localhost:5000/swagger");
+logger.LogInformation("🗄️  Banco de dados: {DbProvider}", app.Configuration.GetValue<string>("DbProvider"));
 
 app.Run();

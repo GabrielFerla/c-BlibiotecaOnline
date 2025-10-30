@@ -124,27 +124,27 @@ namespace BibliotecaDigital.Data.Context
                 new Autor
                 {
                     Id = 1,
-                    Nome = "Machado de Assis",
-                    Email = "machado@literatura.com.br",
-                    DataNascimento = new DateTime(1839, 6, 21),
+                    Nome = "Carlos Drummond de Andrade",
+                    Email = "drummond@poesia.com.br",
+                    DataNascimento = new DateTime(1902, 10, 31),
                     Nacionalidade = "Brasileira",
                     DataCriacao = DateTime.UtcNow
                 },
                 new Autor
                 {
                     Id = 2,
-                    Nome = "Clarice Lispector",
-                    Email = "clarice@literatura.com.br",
-                    DataNascimento = new DateTime(1920, 12, 10),
+                    Nome = "Cecília Meireles",
+                    Email = "cecilia@poesia.com.br",
+                    DataNascimento = new DateTime(1901, 11, 7),
                     Nacionalidade = "Brasileira",
                     DataCriacao = DateTime.UtcNow
                 },
                 new Autor
                 {
                     Id = 3,
-                    Nome = "Jorge Amado",
-                    Email = "jorge@literatura.com.br",
-                    DataNascimento = new DateTime(1912, 8, 10),
+                    Nome = "Mário de Andrade",
+                    Email = "mario@modernismo.com.br",
+                    DataNascimento = new DateTime(1893, 10, 9),
                     Nacionalidade = "Brasileira",
                     DataCriacao = DateTime.UtcNow
                 }
@@ -156,25 +156,25 @@ namespace BibliotecaDigital.Data.Context
                 {
                     Id = 1,
                     AutorId = 1,
-                    Biografia = "Joaquim Maria Machado de Assis foi um escritor brasileiro, considerado por muitos críticos o maior nome da literatura brasileira. Fundador da Academia Brasileira de Letras.",
-                    Website = "https://machadodeassis.org.br",
-                    Premios = "Fundador da Academia Brasileira de Letras",
+                    Biografia = "Carlos Drummond de Andrade foi um poeta, contista e cronista brasileiro, considerado por muitos o maior poeta brasileiro do século XX. Membro da Academia Brasileira de Letras.",
+                    Website = "https://drummond.org.br",
+                    Premios = "Prêmio Nacional de Poesia, Prêmio Jabuti",
                     DataCriacao = DateTime.UtcNow
                 },
                 new PerfilAutor
                 {
                     Id = 2,
                     AutorId = 2,
-                    Biografia = "Clarice Lispector foi uma escritora e jornalista brasileira. Nascida na Ucrânia, considerada uma das escritoras brasileiras mais importantes do século XX.",
-                    Premios = "Prêmio Jabuti, Prêmio Fundação Cultural do Distrito Federal",
+                    Biografia = "Cecília Meireles foi uma poetisa, professora e jornalista brasileira. Uma das vozes mais importantes da literatura brasileira, especialmente da poesia.",
+                    Premios = "Prêmio Jabuti, Prêmio Machado de Assis",
                     DataCriacao = DateTime.UtcNow
                 },
                 new PerfilAutor
                 {
                     Id = 3,
                     AutorId = 3,
-                    Biografia = "Jorge Amado foi um dos mais famosos e traduzidos escritores brasileiros de todos os tempos. Suas obras foram adaptadas para cinema, televisão e teatro.",
-                    Premios = "Prêmio Stalin da Paz, Prêmio Jabuti",
+                    Biografia = "Mário de Andrade foi um poeta, romancista, musicólogo, historiador de arte e crítico brasileiro. Um dos principais nomes do modernismo brasileiro.",
+                    Premios = "Prêmio Jabuti, Prêmio Machado de Assis",
                     DataCriacao = DateTime.UtcNow
                 }
             );
@@ -184,17 +184,17 @@ namespace BibliotecaDigital.Data.Context
                 new Livro
                 {
                     Id = 1,
-                    Titulo = "Dom Casmurro",
+                    Titulo = "A Rosa do Povo",
                     AutorId = 1,
                     ISBN = "978-85-254-0001-1",
-                    AnoPublicacao = 1899,
-                    Editora = "Garnier",
-                    Genero = "Romance",
+                    AnoPublicacao = 1945,
+                    Editora = "José Olympio",
+                    Genero = "Poesia",
                     NumeroEdicao = 1,
-                    NumeroPaginas = 256,
+                    NumeroPaginas = 180,
                     Idioma = "Português",
-                    Sinopse = "Romance narrado em primeira pessoa por Bentinho, que conta a história de seu amor por Capitu desde a infância até o casamento.",
-                    Preco = 29.90m,
+                    Sinopse = "Uma das obras mais importantes de Drummond, que reúne poemas de cunho social e político escritos durante a Segunda Guerra Mundial.",
+                    Preco = 35.90m,
                     EstoqueDisponivel = 15,
                     EstoqueTotal = 20,
                     Ativo = true,
@@ -203,17 +203,17 @@ namespace BibliotecaDigital.Data.Context
                 new Livro
                 {
                     Id = 2,
-                    Titulo = "O Cortiço",
+                    Titulo = "Claro Enigma",
                     AutorId = 1,
                     ISBN = "978-85-254-0002-8",
-                    AnoPublicacao = 1890,
-                    Editora = "Garnier",
-                    Genero = "Romance",
+                    AnoPublicacao = 1951,
+                    Editora = "José Olympio",
+                    Genero = "Poesia",
                     NumeroEdicao = 1,
-                    NumeroPaginas = 312,
+                    NumeroPaginas = 120,
                     Idioma = "Português",
-                    Sinopse = "Romance naturalista que retrata a vida em um cortiço no Rio de Janeiro do século XIX.",
-                    Preco = 27.90m,
+                    Sinopse = "Coleção de poemas que marca uma fase mais introspectiva e filosófica da poesia de Drummond.",
+                    Preco = 28.90m,
                     EstoqueDisponivel = 8,
                     EstoqueTotal = 15,
                     Ativo = true,
@@ -222,17 +222,17 @@ namespace BibliotecaDigital.Data.Context
                 new Livro
                 {
                     Id = 3,
-                    Titulo = "A Hora da Estrela",
+                    Titulo = "Romanceiro da Inconfidência",
                     AutorId = 2,
                     ISBN = "978-85-254-0003-5",
-                    AnoPublicacao = 1977,
+                    AnoPublicacao = 1953,
                     Editora = "José Olympio",
-                    Genero = "Romance",
+                    Genero = "Poesia",
                     NumeroEdicao = 1,
-                    NumeroPaginas = 87,
+                    NumeroPaginas = 200,
                     Idioma = "Português",
-                    Sinopse = "A história de Macabéa, uma jovem alagoana que vive no Rio de Janeiro, contada por Rodrigo S.M.",
-                    Preco = 24.90m,
+                    Sinopse = "Poema épico que reconta a história da Inconfidência Mineira através de versos líricos e dramáticos.",
+                    Preco = 32.90m,
                     EstoqueDisponivel = 12,
                     EstoqueTotal = 18,
                     Ativo = true,
@@ -241,17 +241,17 @@ namespace BibliotecaDigital.Data.Context
                 new Livro
                 {
                     Id = 4,
-                    Titulo = "Gabriela, Cravo e Canela",
+                    Titulo = "Macunaíma",
                     AutorId = 3,
                     ISBN = "978-85-254-0004-2",
-                    AnoPublicacao = 1958,
-                    Editora = "Martins",
+                    AnoPublicacao = 1928,
+                    Editora = "Livraria Martins",
                     Genero = "Romance",
                     NumeroEdicao = 1,
-                    NumeroPaginas = 421,
+                    NumeroPaginas = 200,
                     Idioma = "Português",
-                    Sinopse = "Romance que retrata a vida na cidade de Ilhéus nos anos 1920, com foco na personagem Gabriela.",
-                    Preco = 32.90m,
+                    Sinopse = "O herói sem nenhum caráter, obra-prima do modernismo brasileiro que mistura folclore, mitologia e sátira social.",
+                    Preco = 38.90m,
                     EstoqueDisponivel = 6,
                     EstoqueTotal = 12,
                     Ativo = true,
@@ -265,9 +265,9 @@ namespace BibliotecaDigital.Data.Context
                 {
                     Id = 1,
                     LivroId = 1,
-                    NomeUsuario = "João Silva",
+                    NomeUsuario = "Ana Costa",
                     CpfUsuario = "123.456.789-01",
-                    EmailUsuario = "joao.silva@email.com",
+                    EmailUsuario = "ana.costa@email.com",
                     TelefoneUsuario = "(11) 98765-4321",
                     DataEmprestimo = DateTime.UtcNow.AddDays(-10),
                     DataDevolucaoPrevista = DateTime.UtcNow.AddDays(5),
@@ -279,9 +279,9 @@ namespace BibliotecaDigital.Data.Context
                 {
                     Id = 2,
                     LivroId = 3,
-                    NomeUsuario = "Maria Santos",
+                    NomeUsuario = "Bruno Lima",
                     CpfUsuario = "987.654.321-09",
-                    EmailUsuario = "maria.santos@email.com",
+                    EmailUsuario = "bruno.lima@email.com",
                     TelefoneUsuario = "(11) 91234-5678",
                     DataEmprestimo = DateTime.UtcNow.AddDays(-5),
                     DataDevolucaoPrevista = DateTime.UtcNow.AddDays(10),
@@ -293,9 +293,9 @@ namespace BibliotecaDigital.Data.Context
                 {
                     Id = 3,
                     LivroId = 2,
-                    NomeUsuario = "Pedro Oliveira",
+                    NomeUsuario = "Carla Mendes",
                     CpfUsuario = "111.222.333-44",
-                    EmailUsuario = "pedro.oliveira@email.com",
+                    EmailUsuario = "carla.mendes@email.com",
                     TelefoneUsuario = "(11) 95555-1111",
                     DataEmprestimo = DateTime.UtcNow.AddDays(-20),
                     DataDevolucaoPrevista = DateTime.UtcNow.AddDays(-5),
@@ -303,7 +303,7 @@ namespace BibliotecaDigital.Data.Context
                     // Devolvido é calculado automaticamente
                     MultaAtraso = 5.00m,
                     Status = "Finalizado",
-                    Observacoes = "Devolvido com 2 dias de atraso",
+                    Observacoes = "Devolvido com 2 dias de atraso - multa aplicada",
                     DataCriacao = DateTime.UtcNow
                 }
             );

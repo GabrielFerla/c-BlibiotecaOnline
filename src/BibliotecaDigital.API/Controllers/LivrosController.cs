@@ -8,7 +8,7 @@ using System.Text;
 namespace BibliotecaDigital.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class LivrosController : ControllerBase
     {
         private readonly ILivroRepository _livroRepository;

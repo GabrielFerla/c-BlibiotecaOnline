@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BibliotecaDigital.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class EmprestimosController : ControllerBase
     {
         private readonly IEmprestimoRepository _emprestimoRepository;

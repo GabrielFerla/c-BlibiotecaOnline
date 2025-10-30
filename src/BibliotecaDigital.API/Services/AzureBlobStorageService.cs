@@ -13,7 +13,7 @@ public class AzureBlobStorageService : IAzureBlobStorageService
     public AzureBlobStorageService(IConfiguration configuration)
     {
         var connectionString = configuration["AzureStorage:ConnectionString"];
-        _containerName = configuration["AzureStorage:ContainerName"] ?? "capas-livros";
+        _containerName = configuration["AzureStorage:ContainerName"] ?? "media-capinhas";
         
         // Verifica se o Azure Storage está configurado
         if (string.IsNullOrEmpty(connectionString) || connectionString == "DISABLED")

@@ -4,7 +4,7 @@ using BibliotecaDigital.API.Services;
 namespace BibliotecaDigital.API.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
 public class CapasController : ControllerBase
 {
     private readonly IAzureBlobStorageService _azureBlobStorageService;

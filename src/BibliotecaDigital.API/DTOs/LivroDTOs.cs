@@ -41,12 +41,12 @@ namespace BibliotecaDigital.API.DTOs
 
     public class CreateLivroDTO
     {
-        [Required(ErrorMessage = "Título é obrigatório")]
-        [MaxLength(200, ErrorMessage = "Título deve ter no máximo 200 caracteres")]
+        [Required(ErrorMessage = "O título do livro é obrigatório")]
+        [MaxLength(200, ErrorMessage = "O título deve ter no máximo 200 caracteres")]
         public string Titulo { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "AutorId é obrigatório")]
-        [Range(1, int.MaxValue, ErrorMessage = "AutorId deve ser um número positivo")]
+        [Required(ErrorMessage = "O ID do autor é obrigatório")]
+        [Range(1, int.MaxValue, ErrorMessage = "O ID do autor deve ser um número positivo")]
         public int AutorId { get; set; }
 
         [MaxLength(20, ErrorMessage = "ISBN deve ter no máximo 20 caracteres")]
@@ -91,12 +91,12 @@ namespace BibliotecaDigital.API.DTOs
 
     public class UpdateLivroDTO
     {
-        [Required(ErrorMessage = "Título é obrigatório")]
-        [MaxLength(200, ErrorMessage = "Título deve ter no máximo 200 caracteres")]
+        [Required(ErrorMessage = "O título do livro é obrigatório")]
+        [MaxLength(200, ErrorMessage = "O título deve ter no máximo 200 caracteres")]
         public string Titulo { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "AutorId é obrigatório")]
-        [Range(1, int.MaxValue, ErrorMessage = "AutorId deve ser um número positivo")]
+        [Required(ErrorMessage = "O ID do autor é obrigatório")]
+        [Range(1, int.MaxValue, ErrorMessage = "O ID do autor deve ser um número positivo")]
         public int AutorId { get; set; }
 
         [MaxLength(20, ErrorMessage = "ISBN deve ter no máximo 20 caracteres")]
